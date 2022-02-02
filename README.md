@@ -7,7 +7,7 @@ A slash command that will accept tide parameters from a message line, retrieve t
 
 Command should be:
 
-/tides [location] [day | date]
+/tides [location] [day | date ]
 
 Returns:
 
@@ -21,11 +21,11 @@ HH:MM 9.99m
 
 (3-6 lines of table)
 
-Valid [Locations] are held in a table (607 of them), if [Location] not given then default to “Aberdeen”.  Not case sensitive ABERDEEN == Aberdeen == aberdeen
+Valid [Locations] are held in a table (a subset of the full 607 available), if [Location] not given then default to “Aberdeen”.  Not case sensitive ABERDEEN == Aberdeen == aberdeen
 
-[day] is day of week or abbreviation {today, sat, sun, mon, tue, wed, thur, fri, saturday, sunday …] not case sensitive.  Code translates day to a date in the range today to next 6 days.  Defaults to today if day or date not given.
+[day] is day of week or abbreviation {today, tomorrow, sat, sun, mon, tue, wed, thur, fri, saturday, sunday …] not case sensitive.  Code translates day to a date in the range today to next 6 days.  Defaults to today if day or date not given.
 
-[date] in YYYY-MM-DD format. Valid range is today to today+364 days
+[date] in DD/MM or YYYY-MM-DD format. Valid range is today to today+364 days.  "./-" separators are valid.
 
 So
 
@@ -38,7 +38,7 @@ Etc.
 
 I can code this part if you can show me where in the module to code.
 
-Slash command takes command line input and if it can’t be resolved to valid parameters then reports an error “sorry I didn’t understand that or the location you used is invalid, use /tides [location] [sat, sun... | YYYY-MM-DD] 
+Slash command takes command line input and if it can’t be resolved to valid parameters then reports an error “sorry I didn’t understand that or the location you used is invalid, use /tides [location] [sat, sun... | YYYY-MM-DD]  [possibly change this to a default on error]
 
 If command line input can be resolved into a valid location and date then app calls UK Admiralty API to retrieve tide information for that location and day in JSON format.  Waiting message is displayed while call being made, error code and message  from api shown if call fails.
 
